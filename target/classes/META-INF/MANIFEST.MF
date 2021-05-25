@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: hieu
+Build-Jdk: 14.0.1
+Implementation-Title: SpringBoot
+Implementation-Version: 1.0
+Implementation-Vendor-Id: APIWebService
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/SpringBoot/
+Created-By: Maven Integration for Eclipse
+
