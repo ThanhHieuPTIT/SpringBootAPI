@@ -1,2 +1,8 @@
-E:\Project\Eclipse\SpringBoot\src\main\java\com\laptrinhjavaweb\API\Application.java
-E:\Project\Eclipse\SpringBoot\src\main\java\com\laptrinhjavaweb\API\HomeAPI.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\api\SanPhamAPI.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\Application.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\service\SanPhamService.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\entity\LoaiSanPhamEntity.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\repository\SanPhamRepository.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\api\test.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\entity\SanPhamEntity.java
+E:\Project\Eclipse\SpringBoot\src\main\java\application\DTO\NewDTO.java

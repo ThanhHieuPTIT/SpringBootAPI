@@ -1,2 +1,8 @@
-com\laptrinhjavaweb\API\Application.class
-com\laptrinhjavaweb\API\HomeAPI.class
+application\service\SanPhamService.class
+application\repository\SanPhamRepository.class
+application\api\test.class
+application\entity\SanPhamEntity.class
+application\api\SanPhamAPI.class
+application\Application.class
+application\DTO\NewDTO.class
+application\entity\LoaiSanPhamEntity.class
