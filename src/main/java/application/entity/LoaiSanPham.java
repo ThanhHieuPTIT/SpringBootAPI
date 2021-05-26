@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "loaisanpham")
-public class LoaiSanPhamEntity {
+public class LoaiSanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_loaisp")
