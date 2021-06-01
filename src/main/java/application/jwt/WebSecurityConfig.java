@@ -53,12 +53,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers(HttpMethod.GET,"/sanpham/**","/").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
+                    .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
-                    .antMatchers(HttpMethod.GET,"/donhang/sdt-{sdt}","/khachhang/{sdt}").hasAuthority("USER")
+                    .antMatchers(HttpMethod.GET,"/donhang/sdt-{sdt}","/khachhang/{sdt}","/ctdonhang/**").hasAuthority("USER")
                     .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang/{idDH}").hasAuthority("USER")
                     .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}","/doimatkhau").hasAuthority("USER")
-                    .antMatchers("/sanpham/**","/donhang/**","/khachhang","/khachhang/**","/donhang/**","/ctdonhang/**","/doimatkhau").hasAuthority("ADMIN")
+                    .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**","/ctdonhang","/ctdonhang/**",
+                    			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**","/doimatkhau",
+                    			 "/upfile").hasAuthority("ADMIN")
                     .anyRequest().authenticated();
 
         // Thêm một lớp Filter kiểm tra jwt

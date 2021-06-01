@@ -53,7 +53,7 @@ public class LoginAPI {
         return new LoginResponse(jwt);
     }
     
-    @PostMapping("/doimatkhau")
+    @PutMapping("/doimatkhau")
     private int change(@RequestBody ChangePassword change) { 	  	
     	 Authentication authentication = authenticationManager.authenticate(
                  new UsernamePasswordAuthenticationToken(
