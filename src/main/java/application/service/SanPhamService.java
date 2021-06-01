@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import application.entity.SanPhamEntity;
+import application.entity.SanPham;
 import application.repository.SanPhamRepository;
 
 @Service
@@ -14,15 +14,31 @@ public class SanPhamService {
 	@Autowired
 	private SanPhamRepository repo;
 	
-	public List<SanPhamEntity> listAll(){
-		return repo.findAll();
+	public List<SanPham> listEnable(){
+		return repo.getEnable();
 	}
 	
-	public void save(SanPhamEntity sanPhamEntity) {
-		repo.save(sanPhamEntity);
+	public List<SanPham> listDisable(){
+		return repo.getDisable();
 	}
 	
-	public SanPhamEntity get(Integer id) {
+	public List<SanPham> listLoai(Integer idLoai){
+		return repo.listLoaiSP(idLoai);
+	}
+	
+	public List<SanPham> listKieu(Integer idKieu){
+		return repo.listKieuSP(idKieu);
+	}
+	
+	public List<SanPham> listLoaiAndKieu(Integer idLoai,Integer idKieu){
+		return repo.timSP(idLoai, idKieu);
+	}
+	
+	public void save(SanPham sanPham) {
+		repo.save(sanPham);
+	}
+	
+	public SanPham get(Integer id) {
 		return repo.findOne(id);
 	}
 	

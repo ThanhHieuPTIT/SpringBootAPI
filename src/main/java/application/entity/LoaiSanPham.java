@@ -1,14 +1,10 @@
 package application.entity;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +17,14 @@ public class LoaiSanPham {
 	
 	@Column(name = "tenloai")
 	private String tenLoai;
+		
+	public LoaiSanPham() {
+		super();
+	}
 	
-//	@OneToMany(mappedBy = "idLoaiSP",cascade = CascadeType.ALL)
-//	private Collection<SanPhamEntity> sanPhamEntities;
+	public LoaiSanPham(int idLoaiSP) {
+		this.idLoaiSP = idLoaiSP;
+	}
 
 	public String getTenLoai() {
 		return tenLoai;
@@ -36,12 +37,5 @@ public class LoaiSanPham {
 	public int getIdLoaiSP() {
 		return idLoaiSP;
 	}
-
-//	public Collection<SanPhamEntity> getSanPhamEntities() {
-//		return sanPhamEntities;
-//	}
-//
-//	public void setSanPhamEntities(Collection<SanPhamEntity> sanPhamEntities) {
-//		this.sanPhamEntities = sanPhamEntities;
-//	}
+		
 }

@@ -1,5 +1,8 @@
 package application.entity;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,53 +10,55 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="sanpham")
-public class SanPham {
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+@Entity
+@Table(name = "sanpham")
+public class SanPham {
+	
 	@Id
 	@Column(name = "id_sp")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSP;
-	
+
 	@Column(name = "tensp")
 	private String tenSP;
-	
+
 	@Column(name = "gia")
 	private int gia;
-	
+
 	@Column(name = "anhsp")
-	private byte[] anhSP;
-	
+	private String anhSP;
+
 	@Column(name = "mota")
 	private String moTa;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_loaisp")
-	private LoaiSanPham idLoaiSP;
+	private LoaiSanPham loaiSP;
+
+	@ManyToOne
+	@JoinColumn(name = "id_kieusp")
+	private KieuSanPham kieuSP;
+	
 	
 	@Column(name = "soluongton")
 	private int soLuongTon;
-
 	
+	@Column(name = "trangthai")
+	private boolean trangThai;
 	
 	public SanPham() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SanPham(int idSP, String tenSP, int gia, byte[] anhSP, String moTa, LoaiSanPham idLoaiSP,
-			int soLuongTon) {
+	public SanPham(int idSP) {
 		super();
 		this.idSP = idSP;
-		this.tenSP = tenSP;
-		this.gia = gia;
-		this.anhSP = anhSP;
-		this.moTa = moTa;
-		this.idLoaiSP = idLoaiSP;
-		this.soLuongTon = soLuongTon;
 	}
 
 	public String getTenSP() {
@@ -72,11 +77,11 @@ public class SanPham {
 		this.gia = gia;
 	}
 
-	public byte[] getAnhSP() {
-		return anhSP;
-	}
+	public String getAnhSP() {
+		return ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(anhSP).toUriString();
+	} 
 
-	public void setAnhSP(byte[] anhSP) {
+	public void setAnhSP(String anhSP) {
 		this.anhSP = anhSP;
 	}
 
@@ -88,14 +93,22 @@ public class SanPham {
 		this.moTa = moTa;
 	}
 
-	public LoaiSanPham getIdLoaiSP() {
-		return idLoaiSP;
+	public LoaiSanPham getLoaiSP() {
+		return loaiSP;
 	}
 
-	public void setIdLoaiSP(LoaiSanPham idLoaiSP) {
-		this.idLoaiSP = idLoaiSP;
+	public void setLoaiSP(LoaiSanPham loaiSP) {
+		this.loaiSP = loaiSP;
 	}
 
+	public KieuSanPham getKieuSP() {
+		return kieuSP;
+	}
+
+	public void setKieuSP(KieuSanPham kieuSP) {
+		this.kieuSP = kieuSP;
+	}
+	
 	public int getSoLuongTon() {
 		return soLuongTon;
 	}
@@ -108,5 +121,22 @@ public class SanPham {
 		return idSP;
 	}
 	
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+
+
+	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
+	private Collection<CTPhieuNhap> ctphieunhap;
 	
+//	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
+//	private Collection<CTDonHang> ctdonhang;
+
+	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
+	private Collection<DanhGia> danhgia;
 }
