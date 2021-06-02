@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
+                    .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham","/image/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
                     .antMatchers(HttpMethod.GET,"/donhang/sdt-{sdt}","/khachhang/{sdt}","/ctdonhang/**").hasAuthority("USER")
                     .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang/{idDH}").hasAuthority("USER")
