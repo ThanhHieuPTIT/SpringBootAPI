@@ -34,12 +34,12 @@ public class FileUploadHelper {
 //			fos.close();
 //			System.out.println(cha);
 //			System.out.println(UPLOAD_DIR);
-			String UPLOAD_DIR_copy = cha.substring(0,cha.indexOf(con)) + "\\target\\classes\\static\\image";
+			//String UPLOAD_DIR_copy = cha.substring(0,cha.indexOf(con)) + "\\target\\classes\\static\\image";
 			if(new File(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()).exists()) {
 				f = 2;
 			} else {
 				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
-				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR_copy+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				//Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR_copy+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
 				f=1;
 			}
 
