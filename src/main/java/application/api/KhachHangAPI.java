@@ -46,11 +46,18 @@ public class KhachHangAPI {
 	}
 	
 	@PostMapping("/khachhang")
-	private void add(@RequestBody AddKhachHang addKhachHang) {
-		service.save(addKhachHang.getKhachhang());
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		User user = new User(addKhachHang.getKhachhang().getSdt(),encoder.encode(addKhachHang.getMatkhau()),"USER");
-		userservice.save(user);
+	private ResponseEntity<?> add(@RequestBody AddKhachHang addKhachHang) {
+		System.out.println(addKhachHang.getTenKH());
+		System.out.println(addKhachHang.getDiaChi());
+		try {
+			service.save(new KhachHang(addKhachHang.getSdt(),addKhachHang.getTenKH(),addKhachHang.getDiaChi(),addKhachHang.getEmail()));
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			User user = new User(addKhachHang.getSdt(),encoder.encode(addKhachHang.getMatKhau()),"USER");
+			userservice.save(user);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+		}
 	}
 	
 	@PutMapping("/khachhang/{sdt}")
