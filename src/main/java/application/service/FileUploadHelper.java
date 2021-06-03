@@ -13,8 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileUploadHelper {
 	
-	public final String UPLOAD_DIR=new ClassPathResource("/static/image/").getFile().getAbsolutePath();
-	
+	public String cha=new ClassPathResource("").getFile().getAbsolutePath();
+	public String con = "\\target";
+	public String UPLOAD_DIR = cha.substring(0,cha.indexOf(con)) + "\\src\\main\\resources\\static\\image";
 	public FileUploadHelper() throws IOException {
 	}
 
@@ -31,11 +32,14 @@ public class FileUploadHelper {
 //			fos.write(data);
 //			fos.flush();
 //			fos.close();
-			
+//			System.out.println(cha);
+//			System.out.println(UPLOAD_DIR);
+			String UPLOAD_DIR_copy = cha.substring(0,cha.indexOf(con)) + "\\target\\classes\\static\\image";
 			if(new File(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()).exists()) {
 				f = 2;
 			} else {
 				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR_copy+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
 				f=1;
 			}
 

@@ -15,7 +15,7 @@ public class DanhGia {
 	
 	@Id
 	@Column(name="id_sp")
-	private String idSP;
+	private int idSP;
 	
 	@Column
 	private int vote;
@@ -25,14 +25,14 @@ public class DanhGia {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DanhGia(String sdt, String idSP, int vote) {
+	public DanhGia(String sdt, int idSP, int vote) {
 		super();
 		this.sdt = sdt;
 		this.idSP = idSP;
 		this.vote = vote;
 	}
 
-	public void setIdSP(String idSP) {
+	public void setIdSP(int idSP) {
 		this.idSP = idSP;
 	}
 
@@ -52,7 +52,7 @@ public class DanhGia {
 		this.vote = vote;
 	}
 
-	public String getIdSP() {
+	public int getIdSP() {
 		return idSP;
 	}
 	

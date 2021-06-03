@@ -1,6 +1,7 @@
 package application.api;
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

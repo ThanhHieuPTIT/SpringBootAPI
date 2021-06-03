@@ -129,13 +129,11 @@ public class SanPham {
 		this.trangThai = trangThai;
 	}
 
-
-
 	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
 	private Collection<CTPhieuNhap> ctphieunhap;
 	
-//	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
-//	private Collection<CTDonHang> ctdonhang;
+	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
+	private Collection<CTDonHang> ctdonhang;
 
 	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
 	private Collection<DanhGia> danhgia;
