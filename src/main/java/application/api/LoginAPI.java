@@ -49,8 +49,9 @@ public class LoginAPI {
         // Set thông tin authentication vào Security Context       
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // Trả về jwt cho người dùng.
-        String jwt = tokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
-        return new LoginResponse(jwt);
+        CustomUserDetails userDetail = (CustomUserDetails) authentication.getPrincipal();
+        String jwt = tokenProvider.generateToken(userDetail);
+        return new LoginResponse(jwt,userDetail.getUser().getRole());
     }
     
     @PutMapping("/doimatkhau")
