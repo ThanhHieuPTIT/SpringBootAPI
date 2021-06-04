@@ -57,9 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
                     .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").hasAnyAuthority("USER","ADMIN")
                     .antMatchers(HttpMethod.PUT,"/doimatkhau").hasAnyAuthority("USER","ADMIN")
-                    .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang/{idDH}").hasAuthority("USER")
-                    .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}","/doimatkhau").hasAuthority("USER")
-                    .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**","/ctdonhang",
+                    .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang").hasAuthority("USER")
+                    .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").hasAuthority("USER")
+                    .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**",
                     			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**",
                     			 "/upfile").hasAuthority("ADMIN")
                    .anyRequest().authenticated();

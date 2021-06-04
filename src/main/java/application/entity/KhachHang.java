@@ -15,10 +15,10 @@ public class KhachHang {
 	@Id
 	private String sdt;
 	
-	@Column
+	@Column(name = "tenkh")
 	private String tenKH;
 	
-	@Column
+	@Column(name = "diachi")
 	private String diaChi;
 	
 	@Column

@@ -2,8 +2,10 @@ package application.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,9 +42,14 @@ public class CTDonHangAPI {
 	}
 	
 	@PostMapping("ctdonhang")
-	public void add(@RequestBody List<CTDonHang> list) {
-		for(CTDonHang item:list) {
-			service.save(item);
+	public ResponseEntity<?> add(@RequestBody List<CTDonHang> list) {
+		try{
+			for(CTDonHang item:list) {
+				service.save(item);
+			}
+			return ResponseEntity.ok(1);
+		}catch(NoSuchElementException e) {
+			return ResponseEntity.ok(0);
 		}
 	}
 }
