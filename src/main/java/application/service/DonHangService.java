@@ -1,5 +1,6 @@
 package application.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class DonHangService {
 	
 	public List<DonHang> list(String sdt){
 		return repo.findBySdt(sdt);
+	}
+	
+	public DonHang timDH(String sdt,Date ngayDatHang) {
+		return repo.timDonHang(sdt, ngayDatHang);
 	}
 }

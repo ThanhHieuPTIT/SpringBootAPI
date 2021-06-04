@@ -19,12 +19,12 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 	@Query(value = "SELECT * FROM sanpham sp WHERE sp.trangthai = 0",nativeQuery = true)
 	List<SanPham> getDisable();
 	
-	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_loaisp = ?1",nativeQuery = true)
+	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_loaisp = ?1 and sp.trangthai = 1",nativeQuery = true)
 	List<SanPham> listLoaiSP(Integer idLoai);	
 	
-	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_kieusp = ?1",nativeQuery = true)
+	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_kieusp = ?1 and sp.trangthai = 1",nativeQuery = true)
 	List<SanPham> listKieuSP(Integer idKieu);
 	
-	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_loaisp = ?1 and sp.id_kieusp = ?2",nativeQuery = true)
+	@Query(value = "SELECT * FROM sanpham sp WHERE sp.id_loaisp = ?1 and sp.id_kieusp = ?2 and sp.trangthai = 1",nativeQuery = true)
 	List<SanPham> timSP(Integer idLoai,Integer idKieu);
 }

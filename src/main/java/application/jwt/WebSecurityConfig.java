@@ -55,12 +55,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham","/image/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
-                    .antMatchers(HttpMethod.GET,"/donhang/sdt-{sdt}","/khachhang/{sdt}","/ctdonhang/**").hasAuthority("USER")
+                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/**").hasAuthority("USER")
                     .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang/{idDH}").hasAuthority("USER")
                     .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}","/doimatkhau").hasAuthority("USER")
                     .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**","/ctdonhang","/ctdonhang/**",
                     			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**","/doimatkhau",
                     			 "/upfile").hasAuthority("ADMIN")
+                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}").hasAuthority("ADMIN")
                     .anyRequest().authenticated();
 
         // Thêm một lớp Filter kiểm tra jwt

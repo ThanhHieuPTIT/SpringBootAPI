@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import application.entity.SanPham;
 import application.service.DonHangService;
 import application.service.KhacHangService;
 
+@CrossOrigin
 @RestController
 public class DonHangAPI {
 	@Autowired
@@ -58,14 +60,29 @@ public class DonHangAPI {
 		}
 	}
 	
-	@GetMapping("donhang/sdt-{sdt}")
-	public List<DonHang> list(@PathVariable String sdt){
-		return service.list(sdt);
+	@GetMapping("donhang/sdt/{sdt}")
+	public List<GetDonHang> listBySdt(@PathVariable String sdt){
+		List<DonHang> listDonHang = service.list(sdt);
+		List<GetDonHang> getDonHang = new ArrayList<GetDonHang>();
+		for(DonHang dh: listDonHang) {
+			String diaChi = khachHangService.get(dh.getSdt()).getDiaChi();
+			String email = khachHangService.get(dh.getSdt()).getEmail();
+			String tenKH = khachHangService.get(dh.getSdt()).getTenKH();
+			getDonHang.add(new GetDonHang(dh,diaChi,email,tenKH));
+		}
+		return getDonHang;
 	}
 	
 	@PostMapping("/donhang")
-	public void add(@RequestBody DonHang donhang) {
-		service.save(donhang);
+	public ResponseEntity<?> add(@RequestBody DonHang donhang) {
+		try {
+			service.save(donhang);
+			DonHang check = service.timDH(donhang.getSdt(), donhang.getNgayDatHang());
+			return ResponseEntity.ok(check.getIdDH());
+		} catch(NoSuchElementException e) {
+			return ResponseEntity.ok(0);
+		}
+		
 	}
 	
 	@PutMapping("/donhang/{id}")
