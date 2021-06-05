@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import application.dao.GetCTDonHang;
 import application.dao.GetDonHang;
+import application.dao.Status;
 import application.entity.DonHang;
 import application.entity.SanPham;
 import application.service.DonHangService;
@@ -74,13 +75,13 @@ public class DonHangAPI {
 	}
 	
 	@PostMapping("/donhang")
-	public ResponseEntity<?> add(@RequestBody DonHang donhang) {
+	public ResponseEntity<Status> add(@RequestBody DonHang donhang) {
 		try {
 			service.save(donhang);
 			DonHang check = service.timDH(donhang.getSdt(), donhang.getNgayDatHang());
-			return ResponseEntity.ok(check.getIdDH());
+			return new ResponseEntity<Status>(new Status(check.getIdDH()),HttpStatus.OK);
 		} catch(NoSuchElementException e) {
-			return ResponseEntity.ok(0);
+			return new ResponseEntity<Status>(new Status(0),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.dao.AddKhachHang;
+import application.dao.Status;
 import application.entity.KhachHang;
 import application.entity.SanPham;
 import application.entity.User;
@@ -48,7 +49,7 @@ public class KhachHangAPI {
 	}
 	
 	@PostMapping("/khachhang")
-	private ResponseEntity<?> add(@RequestBody AddKhachHang addKhachHang) {
+	private ResponseEntity<Status> add(@RequestBody AddKhachHang addKhachHang) {
 		try {
 			KhachHang exKhachHang = service.get(addKhachHang.getSdt());
 			if(exKhachHang == null) {
@@ -56,12 +57,12 @@ public class KhachHangAPI {
 				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 				User user = new User(addKhachHang.getSdt(),encoder.encode(addKhachHang.getMatKhau()),"USER");
 				userservice.save(user);
-				return ResponseEntity.ok(1);
+				return new ResponseEntity<Status>(new Status(1),HttpStatus.OK);
 			}
-			return ResponseEntity.ok(2);
+			return new ResponseEntity<Status>(new Status(2),HttpStatus.OK);
 		}catch(NoSuchElementException e) {
 	//		return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-			return ResponseEntity.ok(0);
+			return new ResponseEntity<Status>(new Status(0),HttpStatus.OK);
 		}
 	}
 	

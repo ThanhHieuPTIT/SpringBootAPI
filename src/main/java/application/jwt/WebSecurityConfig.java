@@ -55,14 +55,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham","/image/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
-                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").hasAnyAuthority("USER","ADMIN")
-                    .antMatchers(HttpMethod.PUT,"/doimatkhau").hasAnyAuthority("USER","ADMIN")
-                    .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang").hasAuthority("USER")
-                    .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").hasAuthority("USER")
+                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").permitAll()
+                    .antMatchers(HttpMethod.PUT,"/doimatkhau").permitAll()
+                    .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang").permitAll()
+                    .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").permitAll()
                     .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**",
                     			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**",
-                    			 "/upfile").hasAuthority("ADMIN")
+                    			 "/upfile").permitAll()
                    .anyRequest().authenticated();
+//                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").hasAnyAuthority("USER","ADMIN")
+//                    .antMatchers(HttpMethod.PUT,"/doimatkhau").hasAnyAuthority("USER","ADMIN")
+//                    .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang").hasAuthority("USER")
+//                    .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").hasAuthority("USER")
+//                    .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**",
+//                    			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**",
+//                    			 "/upfile").hasAuthority("ADMIN")
+//                   .anyRequest().authenticated();
 
         // Thêm một lớp Filter kiểm tra jwt
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
