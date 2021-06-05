@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.POST,"/donhang","/ctdonhang").permitAll()
                     .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").permitAll()
                     .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**",
-                    			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu**",
+                    			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu/**",
                     			 "/upfile").permitAll()
                    .anyRequest().authenticated();
 //                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").hasAnyAuthority("USER","ADMIN")

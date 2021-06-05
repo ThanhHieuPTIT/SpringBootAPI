@@ -40,7 +40,7 @@ public class PLSanPhamAPI {
 	}
 	
 	@GetMapping("/kieu/{idKieu}")
-	public ResponseEntity<KieuSanPham> getKieu(@PathVariable Integer id) {
+	public ResponseEntity<KieuSanPham> getKieu(@PathVariable(name = "idKieu") Integer id) {
 		try {
 			KieuSanPham kieusanpham = kieuService.get(id);
 			return new ResponseEntity<KieuSanPham>(kieusanpham,HttpStatus.OK);
@@ -50,7 +50,7 @@ public class PLSanPhamAPI {
 	}
 	
 	@GetMapping("/loai/{idLoai}")
-	public ResponseEntity<LoaiSanPham> getLoai(@PathVariable Integer id) {
+	public ResponseEntity<LoaiSanPham> getLoai(@PathVariable(name = "idLoai") Integer id) {
 		try {
 			LoaiSanPham loaisanpham = loaiService.get(id);
 			return new ResponseEntity<LoaiSanPham>(loaisanpham,HttpStatus.OK);
