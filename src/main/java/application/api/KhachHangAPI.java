@@ -48,6 +48,19 @@ public class KhachHangAPI {
 		}		
 	}
 	
+	@GetMapping("/check/{sdt}")
+	private ResponseEntity<Status> getCheck(@PathVariable String sdt){
+		try {
+			KhachHang khachhang= service.get(sdt);
+			if(khachhang == null) {
+				return new ResponseEntity<Status>(new Status(1),HttpStatus.OK);
+			}
+			return new ResponseEntity<Status>(new Status(2),HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<Status>(new Status(0),HttpStatus.OK);
+		}		
+	}
+	
 	@PostMapping("/khachhang")
 	private ResponseEntity<Status> add(@RequestBody AddKhachHang addKhachHang) {
 		try {
@@ -61,10 +74,10 @@ public class KhachHangAPI {
 			}
 			return new ResponseEntity<Status>(new Status(2),HttpStatus.OK);
 		}catch(NoSuchElementException e) {
-	//		return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 			return new ResponseEntity<Status>(new Status(0),HttpStatus.OK);
 		}
 	}
+	
 	
 	@PutMapping("/khachhang/{sdt}")
 	private ResponseEntity<?> update(@RequestBody KhachHang khachhang,@PathVariable String sdt){

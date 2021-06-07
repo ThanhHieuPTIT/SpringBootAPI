@@ -27,6 +27,7 @@ public class FileUploadHelper {
 	public int uploadFile(MultipartFile multipartFile)
 	{
 		System.err.println("UPLOAD_DIR：" + UPLOAD_DIR);
+		System.err.println("UPLOAD_DIR_copy：" + UPLOAD_DIR_copy);
 		int f=0;
 		try {
 //			InputStream is = multipartFile.getInputStream();
