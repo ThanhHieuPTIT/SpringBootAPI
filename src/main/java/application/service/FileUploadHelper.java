@@ -43,7 +43,7 @@ public class FileUploadHelper {
 				f = 2;
 			} else {
 				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
-				//Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR_copy+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(multipartFile.getInputStream(),Paths.get(UPLOAD_DIR_copy+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
 				f=1;
 			}
 
