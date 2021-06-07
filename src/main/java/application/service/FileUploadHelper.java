@@ -13,15 +13,19 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileUploadHelper {
 	
-	public String UPLOAD_DIR=new ClassPathResource("static/image/").getFile().getAbsolutePath();
+//	public String UPLOAD_DIR=new ClassPathResource("static/image/").getFile().getAbsolutePath();
 //	public String con = "\\target";
 //	public String UPLOAD_DIR = cha.substring(0,cha.indexOf(con)) + "\\src\\main\\resources\\static\\image";
+	
+	String UPLOAD_DIR = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image";
+	
 	public FileUploadHelper() throws IOException {
 	}
 
 
 	public int uploadFile(MultipartFile multipartFile)
 	{
+		System.err.println("UPLOAD_DIR：" + UPLOAD_DIR);
 		int f=0;
 		try {
 //			InputStream is = multipartFile.getInputStream();
