@@ -23,31 +23,28 @@ public class FileUploadAPI {
 	
 	@PostMapping("/upfile")
 	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file,HttpServletRequest request){
-//		String path = request.getServletContext().getRealPath("");
-//		System.out.println("Path:"+path);
-//		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Thất bại ! Thử lại"); 
-//		try {
-//			String path = request.getServletContext().getRealPath("");
-//			System.out.println("Path:"+path);
-//			if(file.isEmpty()) {
-//				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không tìm thấy file lưu trữ");
-//			}
-//			
-//			if(!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
-//				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không đúng định dạng file");
-//			}
-//			
-//			int f = fileUploadHelper.uploadFile(file);
-//			if(f==1) {
-//				return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString());
-//			}
-//			if(f==2) {
-//				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File đã tồn tại.Đổi tên file để thêm mới..."); 
-//			}
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		
+		try {
+			//String path = request.getServletContext().getRealPath("");
+			//System.out.println("Path:"+path);
+			if(file.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không tìm thấy file lưu trữ");
+			}
+			
+			if(!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không đúng định dạng file");
+			}
+			
+			int f = fileUploadHelper.uploadFile(file);
+			if(f==1) {
+				return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString());
+			}
+			if(f==2) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File đã tồn tại.Đổi tên file để thêm mới..."); 
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Thất bại ! Thử lại"); 
 	}
 }

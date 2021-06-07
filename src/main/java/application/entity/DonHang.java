@@ -27,7 +27,7 @@ public class DonHang {
 	private int idDH;
 	
 	@Column(name = "ngaydathang")
-	@JsonFormat(pattern = "dd/MM/yyy hh:mm:ss")
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm:ss")
 	private Date ngayDatHang;
 
 	@Column(name="sdt")

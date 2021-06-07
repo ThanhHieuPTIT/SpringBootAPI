@@ -22,11 +22,15 @@ import application.dao.Status;
 import application.entity.DonHang;
 import application.entity.SanPham;
 import application.service.DonHangService;
+import application.service.EmailService;
 import application.service.KhacHangService;
 
 @CrossOrigin
 @RestController
 public class DonHangAPI {
+	
+	@Autowired
+	private EmailService emailService;
 	@Autowired
 	private DonHangService service;
 	

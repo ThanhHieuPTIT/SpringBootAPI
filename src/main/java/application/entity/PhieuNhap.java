@@ -23,7 +23,7 @@ public class PhieuNhap {
 	private int idPN;
 	
 	@Column(name = "ngaynhap")
-	@JsonFormat(pattern = "dd/MM/yyy hh:mm:ss")
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm:ss")
 	private Date ngayNhap;
 	
 	public PhieuNhap(int idPN, Date ngayNhap) {
