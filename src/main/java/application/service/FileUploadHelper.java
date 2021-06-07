@@ -18,6 +18,7 @@ public class FileUploadHelper {
 //	public String UPLOAD_DIR = cha.substring(0,cha.indexOf(con)) + "\\src\\main\\resources\\static\\image";
 	
 	String UPLOAD_DIR = System.getProperty("user.dir")+"/src/main/resources/static/image";
+	String UPLOAD_DIR_copy = System.getProperty("user.dir")+"/target/classes/static/image";
 	
 	public FileUploadHelper() throws IOException {
 	}
