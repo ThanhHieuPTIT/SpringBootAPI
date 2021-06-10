@@ -81,6 +81,7 @@ public class DonHangAPI {
 	@PostMapping("/donhang")
 	public ResponseEntity<Status> add(@RequestBody DonHang donhang) {
 		try {
+			donhang.setTrangThai("Chờ duyệt");
 			service.save(donhang);
 			DonHang check = service.timDH(donhang.getSdt(), donhang.getNgayDatHang());
 			return new ResponseEntity<Status>(new Status(check.getIdDH()),HttpStatus.OK);
@@ -92,12 +93,29 @@ public class DonHangAPI {
 	
 	@PutMapping("/donhang/{id}")
 	public ResponseEntity<?> update(@RequestBody DonHang donhang,@PathVariable Integer id) {
-		try {
+		try {	
 			DonHang exDonHang = service.get(id);
+			if(!donhang.getTrangThai().equals(exDonHang.getTrangThai())){
+				String to = khachHangService.get(donhang.getSdt()).getEmail();
+				String subject = "Hello";
+				String message = "Hello";
+				if(donhang.getTrangThai().equals("Đang giao")) {
+					 subject = "THÔNG BÁO GIAO HÀNG TỪ WATCHSHOP";
+					 message = "Đơn hàng của bạn đang được giao trong thời gian sớm nhất.Xin cảm ơn!";
+				} else if(donhang.getTrangThai().equals("Đã hủy")) {
+					subject = "THÔNG BÁO HỦY ĐƠN HÀNG TỪ WATCHSHOP";
+					message = "Đơn hàng của bạn đã bị hủy.Xin lỗi bạn về sự cố này!";
+				}else if(donhang.getTrangThai().equals("Đã giao")) {
+					subject = "THÔNG BÁO GIAO THÀNH CÔNG TỪ WATCHSHOP";
+					message = "Đơn hàng của bạn đã được giao thành công.Hãy gửi đánh giá về sản phẩm cho shop nhé!";
+				}
+//				System.out.println("To:"+to+" subject:"+subject+" message"+message);
+				emailService.sendEmail(subject, message, to);
+			}
 			service.save(donhang);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<Status>(new Status(1),HttpStatus.OK);
 		} catch(NoSuchElementException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Status>(new Status(0),HttpStatus.NOT_FOUND);
 		}
 	}
 }

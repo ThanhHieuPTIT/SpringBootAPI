@@ -1,5 +1,6 @@
 package application.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,9 @@ public class PhieuNhapService {
 	
 	public void save(PhieuNhap phieunhap) {
 		repo.save(phieunhap);
+	}
+	
+	public PhieuNhap timPN(Date ngayNhap) {
+		return repo.timPhieuNhap(ngayNhap);
 	}
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.dao.Status;
+import application.entity.DonHang;
 import application.entity.PhieuNhap;
 import application.service.PhieuNhapService;
 
@@ -38,7 +40,13 @@ public class PhieuNhapAPI {
 	}
 	
 	@PostMapping("/phieunhap")
-	private void add(@RequestBody PhieuNhap phieunhap) {
-		service.save(phieunhap);
+	private ResponseEntity<Status> add(@RequestBody PhieuNhap phieunhap) {
+		try {
+			service.save(phieunhap);
+			PhieuNhap check = service.timPN(phieunhap.getNgayNhap());
+			return new ResponseEntity<Status>(new Status(check.getIdPN()),HttpStatus.OK);
+		} catch(NoSuchElementException e) {
+			return new ResponseEntity<Status>(new Status(0),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}	
 }

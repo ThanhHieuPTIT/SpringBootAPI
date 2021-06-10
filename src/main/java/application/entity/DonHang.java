@@ -27,7 +27,7 @@ public class DonHang {
 	private int idDH;
 	
 	@Column(name = "ngaydathang")
-	@JsonFormat(pattern = "dd/MM/yyy HH:mm:ss")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date ngayDatHang;
 
 	@Column(name="sdt")
@@ -88,7 +88,7 @@ public class DonHang {
 		this.tongTien = tongTien;
 	}
 
-	@OneToMany(mappedBy = "idDH",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "idDH",cascade = CascadeType.PERSIST)
 	private Collection<CTDonHang> ctdonhang;
 }
 

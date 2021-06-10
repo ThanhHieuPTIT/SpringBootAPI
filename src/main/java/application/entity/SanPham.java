@@ -132,7 +132,7 @@ public class SanPham {
 	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
 	private Collection<CTPhieuNhap> ctphieunhap;
 	
-	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "idSP",cascade = CascadeType.PERSIST)
 	private Collection<CTDonHang> ctdonhang;
 
 	@OneToMany(mappedBy = "idSP",cascade = CascadeType.ALL)

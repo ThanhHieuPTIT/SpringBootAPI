@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham","/image/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
+                    .antMatchers(HttpMethod.GET,"/","/sanpham/**","/sanpham","/image/**","/thongke/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
                     .antMatchers(HttpMethod.POST,"/khachhang","/login").permitAll()
                     .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").permitAll()
                     .antMatchers(HttpMethod.PUT,"/doimatkhau").permitAll()
@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.PUT,"/khachhang/{sdt}").permitAll()
                     .antMatchers("/sanpham/**","/sanphamdaxoa","/khachhang","/khachhang/**","/donhang","/donhang/**",
                     			 "/phieunhap","/phieunhap/**","/ctphieunhap","/ctphieunhap/**","/loai","/loai/**","/kieu","/kieu/**",
-                    			 "/upfile").permitAll()
+                    			 "/upfile","/xoasanpham/{id}").permitAll()
                    .anyRequest().authenticated();
 //                    .antMatchers(HttpMethod.GET,"/donhang/sdt/{sdt}","/khachhang/{sdt}","/ctdonhang/{idDH}").hasAnyAuthority("USER","ADMIN")
 //                    .antMatchers(HttpMethod.PUT,"/doimatkhau").hasAnyAuthority("USER","ADMIN")

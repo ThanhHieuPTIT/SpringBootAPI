@@ -50,6 +50,6 @@ public class PhieuNhap {
 	}
 	
 		
-	@OneToMany(mappedBy = "idPN",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "idPN",cascade = CascadeType.PERSIST)
 	private Collection<CTPhieuNhap> ctphieunhap;
 }

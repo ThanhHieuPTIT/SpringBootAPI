@@ -68,9 +68,9 @@ public class KhachHang {
 		this.email = email;
 	}
 	
-	@OneToMany(mappedBy = "sdt",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sdt",cascade = CascadeType.PERSIST)
 	private Collection<DonHang> donhang;
 	
-	@OneToMany(mappedBy = "sdt",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sdt",cascade = CascadeType.PERSIST)
 	private Collection<DanhGia> danhgia;
 }
